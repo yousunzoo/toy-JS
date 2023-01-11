@@ -7,17 +7,23 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yousunzoo/KDT4-M2.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "yousunzoo",
   "license": "ISC",
   "dependencies": {
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.21",
     "scss": "^0.2.4"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.2",
-    "parcel": "^2.8.2"
+    "autoprefixer": "^10.4.13",
+    "parcel": "^2.8.2",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "postcss": "^8.4.21",
+    "sass": "^1.57.1"
   },
   "staticFiles": {
     "staticPath": "static"
