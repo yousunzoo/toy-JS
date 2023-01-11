@@ -1,15 +1,14 @@
 {
   "name": "rock-scissors-paper",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
+  "description": "자바스크립트를 사용하여 가위바위보 게임기 구현",
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yousunzoo/KDT4-M2.git"
+    "url": "git+https://github.com/yousunzoo/toy-JS.git/rock-scissors-paper"
   },
   "keywords": [],
   "author": "yousunzoo",
