@@ -4,4 +4,4 @@
 
 ## ✌️ 가위바위보
 - 데모 링크 : [가위바위보](https://rock-scissors-papers-yousunzoo.netlify.app/)
-- 프로젝트 설명 : [이동](https://github.com/yousunzoo/toy-JS/rock-scissors-paper)
+- 프로젝트 설명 : [이동](https://github.com/yousunzoo/toy-JS/tree/main/rock-scissors-paper)
