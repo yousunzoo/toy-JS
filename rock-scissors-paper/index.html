@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
     <link rel="stylesheet" href="/css/main.scss" />
-    <script defer src="/js/main.js"></script>
+    <script type="module" defer src="/js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>가위바위보</title>
   </head>
@@ -15,24 +15,43 @@
     <div id="wrap">
       <div class="container">
         <h1>
-          <a href="/"
-            ><span class="scissors">가위- </span><span class="rock">바위- </span
-            ><span class="paper">보</span></a
-          >
+          <span class="scissors">가위- </span><span class="rock">바위- </span
+          ><span class="paper">보</span>
         </h1>
         <div class="game">
           <div class="screen">
             <div class="screen-computer">
-              <div class="result"></div>
+              <div class="result">
+                <div class="ready">
+                  <img src="/images/rock.png" alt="rock" />
+                  <img src="/images/scissors.png" alt="scissor" />
+                  <img src="/images/paper.png" alt="paper" />
+                </div>
+                <div class="choice hide"></div>
+              </div>
+              <p class="player">
+                Computer : <span class="computer-score">0</span>
+              </p>
             </div>
             <p>VS</p>
-            <div class="screen-user"><div class="result"></div></div>
+            <div class="screen-user">
+              <div class="result">
+                <div class="choice"></div>
+              </div>
+              <p class="player">Player : <span class="user-score">0</span></p>
+            </div>
           </div>
           <div class="buttons">
-            <div class="btn-rock"></div>
-            <div class="btn-scissors"></div>
-            <div class="btn-paper"></div>
-            <div class="btn-resets"></div>
+            <div class="game-buttons">
+              <div class="btn-rock"><span>✊</span></div>
+              <div class="btn-scissors"><span>✌️</span></div>
+              <div class="btn-paper"><span>🖐️</span></div>
+            </div>
+            <div class="btn-reset"><span>리셋</span></div>
+          </div>
+          <div class="show-result hide">
+            <span class="message">야호 내가 이겼다~!</span>
+            <button>다음 게임</button>
           </div>
         </div>
       </div>
