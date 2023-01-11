@@ -1,0 +1,28 @@
+{
+  "name": "rock-scissors-paper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "scss": "^0.2.4"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  },
+  "staticFiles": {
+    "staticPath": "static"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
