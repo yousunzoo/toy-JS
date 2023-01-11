@@ -16,6 +16,7 @@
     "scss": "^0.2.4"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.2",
     "parcel": "^2.8.2"
   },
   "staticFiles": {
