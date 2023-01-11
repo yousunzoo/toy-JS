@@ -6,12 +6,14 @@ let i = 0;
 
 const userScore = document.querySelector(".user-score");
 const computerScore = document.querySelector(".computer-score");
+
 let comCount = localStorage.getItem("computer")
   ? Number(localStorage.getItem("computer"))
   : 0;
 let userCount = localStorage.getItem("user")
   ? Number(localStorage.getItem("user"))
   : 0;
+
 computerScore.textContent = comCount;
 userScore.textContent = userCount;
 
@@ -79,7 +81,7 @@ selectBtn.forEach((btn, idx) => {
     userScore.textContent = userCount;
 
     localStorage.setItem("computer", comCount);
-    localStorage.setItem("userCount", userCount);
+    localStorage.setItem("user", userCount);
   });
 });
 
