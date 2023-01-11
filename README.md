@@ -1,2 +1,7 @@
 # toy-JS
-HTML, CSS, Javascript를 사용해 토이 프로젝트를 만드는 공간입니다.
+
+- 목표 : 자바스크립트를 사용하여 토이 프로젝트 제작
+
+## ✌️ 가위바위보
+- 데모 링크 : [가위바위보](https://rock-scissors-papers-yousunzoo.netlify.app/)
+- 프로젝트 설명 : [이동](https://github.com/yousunzoo/toy-JS/rock-scissors-paper)
