@@ -13,9 +13,12 @@ let comCount = localStorage.getItem("computer")
 let userCount = localStorage.getItem("user")
   ? Number(localStorage.getItem("user"))
   : 0;
+const setStorage = function () {
+  computerScore.textContent = comCount;
+  userScore.textContent = userCount;
+};
 
-computerScore.textContent = comCount;
-userScore.textContent = userCount;
+setStorage();
 
 // 컴퓨터 ready 상태 구현(가위 바위 보 번갈아가면서 출력)
 setInterval(function () {
@@ -51,51 +54,58 @@ let computerAns, userAns;
 
 selectBtn.forEach((btn, idx) => {
   btn.addEventListener("click", async function () {
-    userImgEl.append(userImg);
-    computerImgEl.append(comImg);
-
     computerAns = Math.floor(Math.random() * 3);
     userAns = idx;
 
-    if (computerAns === 0) comImg.src = require("../images/rock.png");
-    comImg.alt = "rock";
-    if (computerAns === 1) comImg.src = require("../images/scissors.png");
-    comImg.alt = "scissors";
-    if (computerAns === 2) comImg.src = require("../images/paper.png");
-    comImg.alt = "paper";
-
-    if (userAns === 0) userImg.src = require("../images/rock.png");
-    userImg.alt = "rock";
-    if (userAns === 1) userImg.src = require("../images/scissors.png");
-    userImg.alt = "scissors";
-    if (userAns === 2) userImg.src = require("../images/paper.png");
-    userImg.alt = "paper";
-
-    computerImgEl.classList.remove("hide");
-    readyEl.classList.add("hide");
+    setImages(computerAns, userAns);
 
     await compare(computerAns, userAns);
-    buttonsDiv.classList.add("hide");
-    resultDiv.classList.remove("hide");
-    computerScore.textContent = comCount;
-    userScore.textContent = userCount;
 
-    localStorage.setItem("computer", comCount);
-    localStorage.setItem("user", userCount);
+    setResult();
   });
 });
 
-let compare = function (com, user) {
+const setImages = function (computerAns, userAns) {
+  userImgEl.append(userImg);
+  computerImgEl.append(comImg);
+
+  if (computerAns === 0) comImg.src = require("../images/rock.png");
+  comImg.alt = "rock";
+  if (computerAns === 1) comImg.src = require("../images/scissors.png");
+  comImg.alt = "scissors";
+  if (computerAns === 2) comImg.src = require("../images/paper.png");
+  comImg.alt = "paper";
+
+  if (userAns === 0) userImg.src = require("../images/rock.png");
+  userImg.alt = "rock";
+  if (userAns === 1) userImg.src = require("../images/scissors.png");
+  userImg.alt = "scissors";
+  if (userAns === 2) userImg.src = require("../images/paper.png");
+  userImg.alt = "paper";
+
+  computerImgEl.classList.remove("hide");
+  readyEl.classList.add("hide");
+};
+const setResult = function () {
+  buttonsDiv.classList.add("hide");
+  resultDiv.classList.remove("hide");
+  computerScore.textContent = comCount;
+  userScore.textContent = userCount;
+
+  localStorage.setItem("computer", comCount);
+  localStorage.setItem("user", userCount);
+};
+const compare = function (com, user) {
+  if (com === user) {
+    message.textContent = "비겼다~";
+    return;
+  }
   switch (user) {
     case 0:
-      if (com === 0) {
-        message.textContent = "비겼다~";
-      }
       if (com === 1) {
         message.textContent = "야호 내가 이겼다~!";
         userCount += 1;
-      }
-      if (com === 2) {
+      } else {
         message.textContent = "이런! 져버리다니...";
         comCount += 1;
       }
@@ -104,11 +114,7 @@ let compare = function (com, user) {
       if (com === 0) {
         message.textContent = "이런! 져버리다니...";
         comCount += 1;
-      }
-      if (com === 1) {
-        message.textContent = "비겼다~";
-      }
-      if (com === 2) {
+      } else {
         message.textContent = "야호 내가 이겼다~!";
         userCount += 1;
       }
@@ -117,13 +123,9 @@ let compare = function (com, user) {
       if (com === 0) {
         message.textContent = "야호 내가 이겼다~!";
         userCount += 1;
-      }
-      if (com === 1) {
+      } else {
         message.textContent = "이런! 져버리다니...";
         comCount += 1;
-      }
-      if (com === 2) {
-        message.textContent = "비겼다~";
       }
       break;
   }
@@ -133,6 +135,10 @@ let compare = function (com, user) {
 const nextBtn = document.querySelector(".show-result").querySelector("button");
 
 nextBtn.addEventListener("click", function () {
+  nextGame();
+});
+
+const nextGame = function () {
   buttonsDiv.classList.remove("hide");
   resultDiv.classList.add("hide");
 
@@ -141,12 +147,16 @@ nextBtn.addEventListener("click", function () {
 
   computerImgEl.innerHTML = "";
   userImgEl.innerHTML = "";
-});
+};
 
 // 리셋 버튼 클릭 시 점수 날림
 const resetBtn = document.querySelector(".btn-reset");
 
 resetBtn.addEventListener("click", function () {
+  resetGame();
+});
+
+const resetGame = () => {
   comCount = 0;
   userCount = 0;
   computerScore.textContent = comCount;
@@ -156,4 +166,4 @@ resetBtn.addEventListener("click", function () {
   resultDiv.classList.add("hide");
   localStorage.setItem("computer", 0);
   localStorage.setItem("user", 0);
-});
+};
