@@ -4,15 +4,32 @@
     url("//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2");
 }
 $black: #2b3547;
+$blue: #378cb1;
+$white: #fffce9;
+$yellow: #dea862;
+$light-yellow: #f6d394;
+$red: #de724b;
+$black: #555;
+$green: #588c73;
 
 body {
   font-family: "bitbit";
-  background-color: #378cb1;
+  background-color: $blue;
   a {
     text-decoration: none;
     color: inherit;
     display: block;
   }
+}
+input,
+textarea,
+button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
 }
 
 .hide {
@@ -26,8 +43,8 @@ body {
     width: 700px;
     height: auto;
     margin: auto;
-    background-color: #fffce9;
-    border: 16px solid #dea862;
+    background-color: $white;
+    border: 16px solid $yellow;
     box-sizing: border-box;
     padding: 20px 0;
 
@@ -39,13 +56,13 @@ body {
       text-align: center;
       font-size: 60px;
       .scissors {
-        color: #dea862;
+        color: $yellow;
       }
       .rock {
-        color: #de724b;
+        color: $red;
       }
       .paper {
-        color: #388cb1;
+        color: $blue;
       }
     }
     .game {
@@ -110,7 +127,7 @@ body {
             height: 100px;
             margin-right: 48px;
             border-radius: 100%;
-            background-color: #555;
+            background-color: $black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -132,7 +149,7 @@ body {
           width: 100px;
           height: 100px;
           border-radius: 100%;
-          background-color: #555;
+          background-color: $black;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -155,14 +172,14 @@ body {
         height: 100px;
         margin: auto;
         margin-bottom: 10px;
-        background-color: #588c73;
+        background-color: $green;
         border-radius: 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 30px;
         font-size: 40px;
-        color: #f6d394;
+        color: $light-yellow;
         button {
           width: 130px;
           height: 50px;
