@@ -1,0 +1,31 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "자바스크립트로 타이머 기능 구현",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yousunzoo/toy-JS/tree/main/timer"
+  },
+  "keywords": [],
+  "author": "yousnuzoo",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.2",
+    "autoprefixer": "^10.4.13",
+    "parcel": "^2.8.2",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "postcss": "^8.4.21",
+    "sass": "^1.57.1"
+  },
+  "staticFiles": {
+    "staticPath": "static"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
