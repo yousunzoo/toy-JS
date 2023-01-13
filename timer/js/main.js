@@ -14,17 +14,22 @@ let basicSubject = {
   seconds: 0,
 };
 
+let subjects = {
+  공부: basicSubject,
+};
+
 // 창 켜질 때 localStorage에 저장된 값 있으면 불러오기
 window.onload = async function () {
   const loadTotal = localStorage.getItem("total");
   loadTotal ? (total = JSON.parse(loadTotal)) : total;
   localStorage.setItem("total", JSON.stringify(total));
-  const loadBasic = localStorage.getItem("basic");
+  const loadSubjects = localStorage.getItem("subjects");
 
-  loadBasic
-    ? loadBasic
-    : localStorage.setItem("basic", JSON.stringify(basicSubject));
+  loadSubjects
+    ? loadSubjects
+    : localStorage.setItem("subjects", JSON.stringify(subjects));
   setTotalText();
+  if (loadSubjects) setSubjectList(JSON.parse(loadSubjects));
 };
 
 let startTimer;
@@ -125,5 +130,18 @@ const addSubject = (subjectName) => {
     minutes: 0,
     seconds: 0,
   };
-  localStorage.setItem(subjectName, JSON.stringify(subjectItem));
+  subjects[subjectName] = subjectItem;
+  localStorage.setItem("subjects", JSON.stringify(subjects));
+};
+
+const setSubjectList = (loadSubjects) => {
+  subjectList.innerHTML = "";
+  for (subjectName in loadSubjects) {
+    const subjectLi = document.createElement("li");
+    subjectLi.innerHTML = `<p class="subject-name">${subjectName}</p>
+  <button class="material-symbols-outlined">
+  radio_button_unchecked
+  </button>`;
+    subjectList.append(subjectLi);
+  }
 };
