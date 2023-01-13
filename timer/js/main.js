@@ -9,7 +9,7 @@ let total = {
 };
 
 // 창 켜질 때 localStorage에 저장된 값 있으면 불러오기
-window.onload = function () {
+window.onload = async function () {
   const loadTotal = localStorage.getItem("total");
   loadTotal ? (total = JSON.parse(loadTotal)) : total;
 
@@ -74,4 +74,37 @@ const setTotalText = function () {
   totalH.textContent = totalHours < 10 ? `0${totalHours}` : totalHours;
   totalM.textContent = totalMinutes < 10 ? `0${totalMinutes}` : totalMinutes;
   totalS.textContent = totalSeconds < 10 ? `0${totalSeconds}` : totalSeconds;
+};
+
+// 모달 창 띄우기
+const addSubjectBtn = document.querySelector(".add-subject");
+const modal = document.querySelector("#modal");
+addSubjectBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+// 모달 창에서 과목 추가
+const modalBtn = modal.querySelector("button");
+const modalInput = modal.querySelector("input");
+const subjectList = document.querySelector(".subject-list");
+
+modalBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const subjectName = modalInput.value;
+  if (subjectName === "") {
+    modalInput.classList.add("no-name");
+  } else {
+    addSubject(subjectName);
+  }
+});
+
+const addSubject = (subjectName) => {
+  const subjectLi = document.createElement("li");
+  subjectLi.innerHTML = `<p class="subject-name">${subjectName}</p>
+  <button class="material-symbols-outlined">
+  radio_button_unchecked
+  </button>`;
+  subjectList.append(subjectLi);
+  modal.style.display = "none";
+  modalInput.value = "";
 };
