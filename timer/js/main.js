@@ -41,6 +41,7 @@ window.onload = async function () {
 let startTimer, focused;
 const modal = document.querySelector("#modal");
 let focusModal = document.querySelector(".focus-modal");
+let unavailableEl = document.querySelector(".unavailable");
 
 // 플레이 버튼 누르면 타이머 시작
 // 쉬는 시간 10초 지나면 현재 집중 시간 리셋
@@ -51,6 +52,7 @@ playBtn.addEventListener("click", function () {
   pauseBtn.classList.add("active");
   startTimer = setInterval(timer, 1000);
   clearInterval(focused);
+  unavailableEl.classList.add("active");
 });
 
 // 일시정지 버튼 누르면 타이머 중단, 집중 모달 등장
@@ -64,6 +66,7 @@ pauseBtn.addEventListener("click", function (e) {
   modal.style.display = "block";
   focusModal.classList.add("active");
   focused = setInterval(countFocus, 1000);
+  unavailableEl.classList.remove("active");
 });
 
 const timer = function () {

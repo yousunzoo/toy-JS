@@ -83,8 +83,9 @@ button {
   width: 100%;
   min-height: calc(100vh - 300px);
   background-color: #fff;
-  padding: 20px;
+  padding: 30px 20px;
   box-sizing: border-box;
+  position: relative;
   .add-subject {
     display: block;
     border: 3px solid orange;
@@ -125,6 +126,18 @@ button {
           color: orange;
         }
       }
+    }
+  }
+  .unavailable {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    &.active {
+      display: block;
     }
   }
 }
