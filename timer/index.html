@@ -68,10 +68,19 @@
         </ul>
       </div>
       <div id="modal">
-        <form class="add-subject-modal">
+        <form action="POST" class="add-subject-modal">
           <h2>과목 추가</h2>
           <input type="text" placeholder="추가할 과목명을 입력해주세요" />
           <button>추가</button>
+        </form>
+        <form action="POST" class="focus-modal">
+          <p class="description">
+            10초 안에 재시작하면 집중 시간이 이어집니다.
+          </p>
+          <p class="remaining">
+            남은 시간 : <span class="remaining-count">10</span>
+          </p>
+          <button>닫기</button>
         </form>
       </div>
     </div>
