@@ -8,11 +8,22 @@ let total = {
   seconds: 0,
 };
 
+let basicSubject = {
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+};
+
 // 창 켜질 때 localStorage에 저장된 값 있으면 불러오기
 window.onload = async function () {
   const loadTotal = localStorage.getItem("total");
   loadTotal ? (total = JSON.parse(loadTotal)) : total;
+  localStorage.setItem("total", JSON.stringify(total));
+  const loadBasic = localStorage.getItem("basic");
 
+  loadBasic
+    ? loadBasic
+    : localStorage.setItem("basic", JSON.stringify(basicSubject));
   setTotalText();
 };
 
@@ -107,4 +118,12 @@ const addSubject = (subjectName) => {
   subjectList.append(subjectLi);
   modal.style.display = "none";
   modalInput.value = "";
+
+  // localStorage에 과목명으로 된 객체 추가
+  const subjectItem = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  };
+  localStorage.setItem(subjectName, JSON.stringify(subjectItem));
 };
