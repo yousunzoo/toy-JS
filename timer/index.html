@@ -59,14 +59,7 @@
       <div class="list">
         <div class="unavailable"></div>
         <button class="add-subject">과목 추가</button>
-        <ul class="subject-list">
-          <li class="subject">
-            <p class="subject-name">공부</p>
-            <button class="choose material-symbols-outlined">
-              radio_button_checked
-            </button>
-          </li>
-        </ul>
+        <ul class="subject-list"></ul>
       </div>
       <div id="modal">
         <form action="POST" class="add-subject-modal">
@@ -81,6 +74,10 @@
           <p class="remaining">
             남은 시간 : <span class="remaining-count">10</span>
           </p>
+          <button>닫기</button>
+        </form>
+        <form action="POST" class="choose-subject">
+          <p>공부할 과목명을 선택해주세요!</p>
           <button>닫기</button>
         </form>
       </div>

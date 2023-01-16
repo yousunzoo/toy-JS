@@ -46,13 +46,27 @@ let unavailableEl = document.querySelector(".unavailable");
 // 플레이 버튼 누르면 타이머 시작
 // 쉬는 시간 10초 지나면 현재 집중 시간 리셋
 let count = 10;
+const subjectName = document.querySelector(".subject-stopwatch .name");
 
 playBtn.addEventListener("click", function () {
-  playBtn.classList.remove("active");
-  pauseBtn.classList.add("active");
-  startTimer = setInterval(timer, 1000);
-  clearInterval(focused);
-  unavailableEl.classList.add("active");
+  setSubjectText();
+  if (subjectName.textContent === "과목 집중 시간") {
+    modal.style.display = "block";
+    modal.querySelector(".choose-subject").classList.add("active");
+    const closeBtn = modal.querySelector(".choose-subject button");
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      modal.style.display = "none";
+      modal.querySelector(".choose-subject").classList.remove("active");
+    });
+  } else {
+    playBtn.classList.remove("active");
+    pauseBtn.classList.add("active");
+    startTimer = setInterval(timer, 1000);
+    clearInterval(focused);
+    unavailableEl.classList.add("active");
+    setSubjectTimer();
+  }
 });
 
 // 일시정지 버튼 누르면 타이머 중단, 집중 모달 등장
@@ -65,6 +79,8 @@ pauseBtn.addEventListener("click", function (e) {
   localStorage.setItem("total", JSON.stringify(total));
   modal.style.display = "block";
   focusModal.classList.add("active");
+
+  count = 10;
   focused = setInterval(countFocus, 1000);
   unavailableEl.classList.remove("active");
 });
@@ -188,22 +204,17 @@ const subjectList = document.querySelector(".subject-list");
 
 modalBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  const subjectName = modalInput.value;
-  if (subjectName === "") {
+  const subjectN = modalInput.value;
+  if (subjectN === "") {
     modalInput.classList.add("no-name");
   } else {
-    addSubject(subjectName);
+    addSubject(subjectN);
     modalInput.classList.remove("no-name");
   }
 });
 
-const addSubject = (subjectName) => {
-  const subjectLi = document.createElement("li");
-  subjectLi.innerHTML = `<p class="subject-name">${subjectName}</p>
-  <button class="material-symbols-outlined">
-  radio_button_unchecked
-  </button>`;
-  subjectList.append(subjectLi);
+const addSubject = (subjectN) => {
+  setSubjectLi(subjectN);
   modal.style.display = "none";
   addSubjectModal.classList.remove("active");
   modalInput.value = "";
@@ -214,21 +225,23 @@ const addSubject = (subjectName) => {
     minutes: 0,
     seconds: 0,
   };
-  subjects[subjectName] = subjectItem;
+  subjects[subjectN] = subjectItem;
   localStorage.setItem("subjects", JSON.stringify(subjects));
 };
 
 const setSubjectList = (loadSubjects) => {
   subjectList.innerHTML = "";
-  for (subjectName in loadSubjects) {
-    const subjectLi = document.createElement("li");
-    subjectLi.innerHTML = `<p class="subject-name">${subjectName}</p>
-  <button class="material-symbols-outlined">
-  radio_button_unchecked
-  </button>`;
-    subjectList.append(subjectLi);
+  for (subjectN in loadSubjects) {
+    setSubjectLi(subjectN);
   }
 };
+
+function setSubjectLi(subjectN) {
+  let subjectLi = document.createElement("li");
+  subjectLi.innerHTML = `<p class="subject-name">${subjectN}</p>
+<input type="radio" name='subject' value='${subjectN}' />`;
+  subjectList.append(subjectLi);
+}
 
 // 집중 시간 모달 버튼 클릭하면 모달 닫기
 const focusModalCloseBtn = focusModal.querySelector("button");
@@ -238,3 +251,30 @@ focusModalCloseBtn.addEventListener("click", (e) => {
   modal.style.display = "none";
   focusModal.classList.remove("active");
 });
+
+// 과목 input 체크하면 과목 집중 시간 세팅
+
+function setSubjectTimer() {}
+
+function setSubjectText() {
+  const chooseSubject = document.querySelectorAll(".subject-list input");
+
+  chooseSubject.forEach((subject) => {
+    if (subject.checked) {
+      subjectName.textContent = subject.value;
+      const subjectData = JSON.parse(localStorage.getItem("subjects"))[
+        subject.value
+      ];
+      const { hours, minutes, seconds } = subjectData;
+      const subjectTimerEl = document.querySelector(
+        ".subject-stopwatch .timer"
+      );
+      const subjectH = subjectTimerEl.querySelector(".hour");
+      const subjectM = subjectTimerEl.querySelector(".minute");
+      const subjectS = subjectTimerEl.querySelector(".second");
+      subjectH.textContent = hours;
+      subjectM.textContent = minutes;
+      subjectS.textContent = seconds;
+    }
+  });
+}
