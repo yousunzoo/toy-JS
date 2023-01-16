@@ -49,7 +49,7 @@ let count = 10;
 const subjectName = document.querySelector(".subject-stopwatch .name");
 
 playBtn.addEventListener("click", function () {
-  setSubjectText();
+  setSubjectName();
   if (subjectName.textContent === "과목 집중 시간") {
     modal.style.display = "block";
     modal.querySelector(".choose-subject").classList.add("active");
@@ -65,7 +65,8 @@ playBtn.addEventListener("click", function () {
     startTimer = setInterval(timer, 1000);
     clearInterval(focused);
     unavailableEl.classList.add("active");
-    setSubjectTimer();
+    let subjectFocus = setSubjectTimer();
+    console.log(subjectFocus);
   }
 });
 
@@ -256,7 +257,7 @@ focusModalCloseBtn.addEventListener("click", (e) => {
 
 function setSubjectTimer() {}
 
-function setSubjectText() {
+function setSubjectName() {
   const chooseSubject = document.querySelectorAll(".subject-list input");
 
   chooseSubject.forEach((subject) => {
@@ -272,9 +273,9 @@ function setSubjectText() {
       const subjectH = subjectTimerEl.querySelector(".hour");
       const subjectM = subjectTimerEl.querySelector(".minute");
       const subjectS = subjectTimerEl.querySelector(".second");
-      subjectH.textContent = hours;
-      subjectM.textContent = minutes;
-      subjectS.textContent = seconds;
+      subjectH.textContent = hours < 10 ? `0${hours}` : hours;
+      subjectM.textContent = minutes < 10 ? `0${minutes}` : minutes;
+      subjectS.textContent = seconds < 10 ? `0${seconds}` : seconds;
     }
   });
 }
