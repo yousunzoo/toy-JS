@@ -38,8 +38,8 @@ p {
 }
 
 .game-area {
-  width: 500px;
-  height: 520px;
+  width: 480px;
+  height: 460px;
   margin: auto;
   position: relative;
   .ready {
@@ -93,6 +93,8 @@ p {
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
   }
 }
 [data-view="card"] {
@@ -101,10 +103,8 @@ p {
   cursor: pointer;
   background-image: url("/images/card.png");
   background-size: cover;
-  width: 80px;
-  height: 110px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  width: 70px;
+  height: 100px;
   transition: transform 0.6s;
   &:nth-child(5n) {
     margin-right: 0;
@@ -138,7 +138,7 @@ $cards: apple, banana, burger, cake, chocolate, cookie, grape, lemon, meat,
   .flipped[data-item="#{$card}"],
   .same[data-item="#{$card}"] {
     background: url("/images/#{$card}.png") left center no-repeat white;
-    background-size: 60px 60px;
+    background-size: 50px 50px;
     background-position: center;
   }
 }
