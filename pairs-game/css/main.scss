@@ -101,7 +101,7 @@ p {
   transform: rotateY(180deg);
   border-radius: 5px;
   cursor: pointer;
-  background-image: url("/static/images/card.png");
+  background-image: url("../static/card.png");
   background-size: cover;
   width: 70px;
   height: 100px;
@@ -137,7 +137,7 @@ $cards: apple, banana, burger, cake, chocolate, cookie, grape, lemon, meat,
 @each $card in $cards {
   .flipped[data-item="#{$card}"],
   .same[data-item="#{$card}"] {
-    background: url("/static/images/#{$card}.png") left center no-repeat white;
+    background: url("../static/#{$card}.png") left center no-repeat white;
     background-size: 50px 50px;
     background-position: center;
   }
