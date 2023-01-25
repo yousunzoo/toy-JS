@@ -1,7 +1,5 @@
-import bgm from "../music/game_bgm.mp3";
-
+import { playBgm, sameBgm, clickBgm, differentBgm } from "./music";
 const myCards = document.getElementById("container");
-const resultsArray = [];
 const images = [
   "apple",
   "banana",
@@ -20,6 +18,7 @@ const readyEl = document.querySelector(".ready");
 const playBtn = readyEl.querySelector("button");
 
 // start 버튼 누르면 게임 시작 동시에 오디오 재생
+// 타이머 시작
 playBtn.addEventListener("click", function () {
   // playBgm();
   shuffle(cards);
@@ -27,12 +26,7 @@ playBtn.addEventListener("click", function () {
   clickCards();
   readyEl.style.display = "none";
 });
-function playBgm() {
-  var audio = new Audio(bgm);
-  audio.load();
-  audio.volume = 0.5;
-  audio.play();
-}
+
 // 카드 섞기
 
 let shuffledCards = [];
@@ -72,6 +66,7 @@ function clickCards() {
     item.addEventListener("click", async function () {
       if (pass) {
         pass = false;
+        clickBgm();
         this.classList.add("flipped");
         const clickedCard = this.dataset.item;
         clicked.push(clickedCard);
@@ -83,7 +78,7 @@ function clickCards() {
   async function matchCards(el) {
     if (clicked.length === 2) {
       let promise = new Promise((resolve) => {
-        setTimeout(() => resolve(adjustClasses(el)), 800);
+        setTimeout(() => resolve(adjustClasses(el)), 500);
       });
 
       await promise;
@@ -100,6 +95,9 @@ function clickCards() {
         item.classList.add("same");
         pairedCards += 1;
         console.log(pairedCards);
+        sameBgm();
+      } else {
+        differentBgm();
       }
       firstCard.classList.remove("flipped");
       item.classList.remove("flipped");
