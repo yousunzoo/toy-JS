@@ -23,13 +23,46 @@ p {
   margin-bottom: 50px;
 }
 
-#container {
-  width: 480px;
+.game-area {
+  width: 500px;
+  height: 520px;
   margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
+  position: relative;
+  .ready {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
 
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    button {
+      width: 200px;
+      height: 50px;
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      font-size: 30px;
+      border: 4px solid skyblue;
+      border-radius: 20px;
+      &:hover {
+        background-color: skyblue;
+      }
+    }
+  }
+  #container {
+    width: 480px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 [data-view="card"] {
   transform: rotateY(180deg);
   border-radius: 5px;
