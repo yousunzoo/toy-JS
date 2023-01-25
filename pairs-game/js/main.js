@@ -1,11 +1,4 @@
-import {
-  playBgm,
-  pauseBgm,
-  sameBgm,
-  clickBgm,
-  differentBgm,
-  clearBgm,
-} from "./music";
+import { sameBgm, clickBgm, differentBgm, clearBgm } from "./music";
 import playHandler from "./timer";
 const myCards = document.getElementById("container");
 const images = [
@@ -32,7 +25,6 @@ const resultEl = document.querySelector(".result");
 let play;
 
 playBtn.addEventListener("click", function () {
-  playBgm();
   shuffle(cards);
   setCards();
   clickCards();
@@ -126,7 +118,6 @@ function clickCards() {
   // 결과 표시
   function endGame() {
     clearInterval(play);
-    pauseBgm();
     clearBgm();
     resultEl.classList.add("active");
     const resultSecondsEl = resultEl.querySelector(".seconds");
