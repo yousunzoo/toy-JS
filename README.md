@@ -5,3 +5,8 @@
 ## ✌️ 가위바위보
 - 데모 링크 : [가위바위보](https://rock-scissors-papers-yousunzoo.netlify.app/)
 - 프로젝트 설명 : [이동](https://github.com/yousunzoo/toy-JS/tree/main/rock-scissors-paper)
+
+
+## 🃏 카드 짝 맞추기
+- 데모 링크 : [JAVASCRIPT PAIRS GAME](https://pairs-game-yousunzoo.netlify.app/)
+- 프로젝트 설명 : [이동](https://github.com/yousunzoo/toy-JS/tree/main/pairs-game)
