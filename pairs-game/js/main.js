@@ -24,10 +24,10 @@ const resultEl = document.querySelector(".result");
 // 타이머 시작
 let play;
 
+shuffle(cards);
+setCards();
+clickCards();
 playBtn.addEventListener("click", function () {
-  shuffle(cards);
-  setCards();
-  clickCards();
   readyEl.classList.remove("active");
   play = setInterval(playHandler, 10);
 });
