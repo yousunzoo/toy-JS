@@ -2,30 +2,43 @@ import bgm from "../music/game_bgm.mp3";
 import click from "../music/click.wav";
 import same from "../music/same.wav";
 import different from "../music/false.wav";
+import clear from "../music/clear.mp3";
+
+const gameBgm = new Audio(bgm);
+gameBgm.load();
+gameBgm.volume = 0.3;
 
 export function playBgm() {
-  var audio = new Audio(bgm);
-  audio.load();
-  audio.volume = 0.3;
-  audio.play();
+  gameBgm.play();
+}
+
+export function pauseBgm() {
+  gameBgm.pause();
 }
 
 export function clickBgm() {
-  var audio = new Audio(click);
+  const audio = new Audio(click);
   audio.load();
   audio.volume = 0.5;
   audio.play();
 }
 
 export function sameBgm() {
-  var audio = new Audio(same);
+  const audio = new Audio(same);
   audio.load();
   audio.volume = 0.5;
   audio.play();
 }
 
 export function differentBgm() {
-  var audio = new Audio(different);
+  const audio = new Audio(different);
+  audio.load();
+  audio.volume = 0.5;
+  audio.play();
+}
+
+export function clearBgm() {
+  var audio = new Audio(clear);
   audio.load();
   audio.volume = 0.5;
   audio.play();

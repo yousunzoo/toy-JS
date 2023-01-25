@@ -1,4 +1,12 @@
-import { playBgm, sameBgm, clickBgm, differentBgm } from "./music";
+import {
+  playBgm,
+  pauseBgm,
+  sameBgm,
+  clickBgm,
+  differentBgm,
+  clearBgm,
+} from "./music";
+import playHandler from "./timer";
 const myCards = document.getElementById("container");
 const images = [
   "apple",
@@ -12,19 +20,24 @@ const images = [
   "meat",
   "watermelon",
 ];
+
 // 이미지 배열 복제
 const cards = [...images, ...images];
 const readyEl = document.querySelector(".ready");
 const playBtn = readyEl.querySelector("button");
+const resultEl = document.querySelector(".result");
 
 // start 버튼 누르면 게임 시작 동시에 오디오 재생
 // 타이머 시작
+let play;
+
 playBtn.addEventListener("click", function () {
-  // playBgm();
+  playBgm();
   shuffle(cards);
   setCards();
   clickCards();
-  readyEl.style.display = "none";
+  readyEl.classList.remove("active");
+  play = setInterval(playHandler, 10);
 });
 
 // 카드 섞기
@@ -53,8 +66,8 @@ function setCards() {
 
 function clickCards() {
   const myCardsEl = document.querySelectorAll(".card");
-  let clicked = [];
   let pairedCards = 0;
+  let clicked = [];
   let pass = true;
 
   // 카드 클릭할 때마다 동작 수행
@@ -70,15 +83,15 @@ function clickCards() {
         this.classList.add("flipped");
         const clickedCard = this.dataset.item;
         clicked.push(clickedCard);
-        await matchCards(this);
+        await compareCards(this);
       }
     });
   });
 
-  async function matchCards(el) {
+  async function compareCards(el) {
     if (clicked.length === 2) {
       let promise = new Promise((resolve) => {
-        setTimeout(() => resolve(adjustClasses(el)), 500);
+        setTimeout(() => resolve(matchCards(el)), 300);
       });
 
       await promise;
@@ -86,7 +99,7 @@ function clickCards() {
     pass = true;
   }
 
-  function adjustClasses(el) {
+  function matchCards(el) {
     const firstCard = el;
     const secondCard = getSiblings(firstCard);
     secondCard.forEach((item) => {
@@ -94,7 +107,6 @@ function clickCards() {
         firstCard.classList.add("same");
         item.classList.add("same");
         pairedCards += 1;
-        console.log(pairedCards);
         sameBgm();
       } else {
         differentBgm();
@@ -103,10 +115,30 @@ function clickCards() {
       item.classList.remove("flipped");
     });
     clicked = [];
+    if (pairedCards === 10) endGame();
   }
   function getSiblings(el) {
     return Array.from(el.parentElement.children).filter(
       (e) => e.classList.contains("flipped") && e !== el
     );
+  }
+
+  // 결과 표시
+  function endGame() {
+    clearInterval(play);
+    pauseBgm();
+    clearBgm();
+    resultEl.classList.add("active");
+    const resultSecondsEl = resultEl.querySelector(".seconds");
+    const resultMilliEl = resultEl.querySelector(".milli");
+    const countdownEl = document.querySelector(".countdown");
+    const secondEl = countdownEl.querySelector("#seconds");
+    const milliEl = countdownEl.querySelector("#milli");
+    resultSecondsEl.textContent = secondEl.textContent;
+    resultMilliEl.textContent = milliEl.textContent;
+    const playAgainBtn = resultEl.querySelector("button");
+    playAgainBtn.addEventListener("click", function () {
+      location.reload();
+    });
   }
 }
