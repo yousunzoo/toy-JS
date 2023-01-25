@@ -23,10 +23,12 @@ const resultEl = document.querySelector(".result");
 // start 버튼 누르면 게임 시작 동시에 오디오 재생
 // 타이머 시작
 let play;
-
-playBtn.addEventListener("click", function () {
+window.onload = function () {
   shuffle(cards);
   setCards();
+};
+
+playBtn.addEventListener("click", function () {
   clickCards();
   readyEl.classList.remove("active");
   play = setInterval(playHandler, 10);
