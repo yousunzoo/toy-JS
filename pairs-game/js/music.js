@@ -1,7 +1,7 @@
-import click from "../music/click.wav";
-import same from "../music/same.wav";
-import different from "../music/false.wav";
-import clear from "../music/clear.mp3";
+const click = require("../music/click.wav");
+const same = require("../music/same.wav");
+const different = require("../music/false.wav");
+const clear = require("../music/clear.mp3");
 
 export function clickBgm() {
   const audio = new Audio(click);
