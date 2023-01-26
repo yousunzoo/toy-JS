@@ -1,3 +1,4 @@
+import "../.css/main.scss";
 import { sameBgm, clickBgm, differentBgm, clearBgm } from "./music";
 import playHandler from "./timer";
 const myCards = document.getElementById("container");
